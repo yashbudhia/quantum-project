@@ -14,8 +14,23 @@ class QuantumCatSimulator {
     init() {
         this.bindEvents();
         this.initCharts();
+        this.initTabs();
         this.loadEducationalContent();
         console.log('Quantum Cat Simulator initialized');
+    }
+
+    initCharts() {
+        // Initialize Chart.js defaults
+        if (typeof Chart !== 'undefined') {
+            Chart.defaults.font.family = "'Inter', sans-serif";
+            Chart.defaults.color = '#2c3e50';
+            Chart.defaults.borderColor = 'rgba(0, 0, 0, 0.1)';
+        }
+    }
+
+    initTabs() {
+        // Initialize tab functionality if needed
+        // This method can be expanded for tab navigation
     }
 
     bindEvents() {
@@ -34,7 +49,8 @@ class QuantumCatSimulator {
             
             const response = await fetch(`${this.apiBase}/initialize`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
             });
             
             const result = await response.json();
@@ -68,7 +84,8 @@ class QuantumCatSimulator {
             
             const response = await fetch(`${this.apiBase}/superposition`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
             });
             
             const result = await response.json();
@@ -102,7 +119,8 @@ class QuantumCatSimulator {
             
             const response = await fetch(`${this.apiBase}/measure`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' }
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({})
             });
             
             const result = await response.json();
@@ -272,7 +290,12 @@ class QuantumCatSimulator {
     }
 
     updateStateChart(statevector) {
-        const ctx = document.getElementById('state-chart').getContext('2d');
+        const canvas = document.getElementById('state-chart');
+        const ctx = canvas.getContext('2d');
+        
+        // Reset canvas size to prevent growth
+        canvas.width = canvas.offsetWidth;
+        canvas.height = 200;
         
         if (this.charts.state) {
             this.charts.state.destroy();
@@ -331,7 +354,12 @@ class QuantumCatSimulator {
     }
 
     updateProbabilityChart(probabilities) {
-        const ctx = document.getElementById('probability-chart').getContext('2d');
+        const canvas = document.getElementById('probability-chart');
+        const ctx = canvas.getContext('2d');
+        
+        // Reset canvas size to prevent growth
+        canvas.width = canvas.offsetWidth;
+        canvas.height = 200;
         
         if (this.charts.probability) {
             this.charts.probability.destroy();

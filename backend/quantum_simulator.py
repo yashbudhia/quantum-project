@@ -52,7 +52,7 @@ class SchrodingersCatSimulator:
         statevector = result.get_statevector()
         
         return {
-            'circuit': qc.draw(output='text'),
+            'circuit': str(qc.draw(output='text')),
             'statevector': self._format_statevector(statevector),
             'state': 'superposition',
             'description': 'Cat in superposition: (|alive⟩ + |dead⟩)/√2'
@@ -91,7 +91,7 @@ class SchrodingersCatSimulator:
             'final_state': final_state,
             'shots': shots,
             'description': f'Measurement collapsed to |{final_state}⟩ state',
-            'circuit': qc.draw(output='text')
+            'circuit': str(qc.draw(output='text'))
         }
     
     def run_multiple_experiments(self, num_experiments=1000):
@@ -145,7 +145,7 @@ class SchrodingersCatSimulator:
     def _format_statevector(self, statevector):
         """Format complex statevector for JSON serialization"""
         return {
-            'amplitudes': [complex(amp) for amp in statevector],
+            'amplitudes': [{'real': float(amp.real), 'imag': float(amp.imag)} for amp in statevector],
             'probabilities': [abs(amp)**2 for amp in statevector],
             'basis_states': ['|alive⟩', '|dead⟩']
         }

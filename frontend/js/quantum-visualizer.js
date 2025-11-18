@@ -120,14 +120,14 @@ class QuantumVisualizer {
         ctx.ellipse(centerX, centerY, radius * 0.3, radius, 0, 0, 2 * Math.PI);
         ctx.stroke();
         
-        // Calculate state vector position on Bloch sphere
+            // Calculate state vector position on Bloch sphere
         if (statevector && statevector.amplitudes) {
             const alpha = statevector.amplitudes[0];
             const beta = statevector.amplitudes[1];
             
             // Simplified Bloch sphere coordinates
             const theta = 2 * Math.acos(Math.abs(alpha));
-            const phi = Math.atan2(beta.imaginary || 0, alpha.real || 0);
+            const phi = Math.atan2(beta.imag || 0, alpha.real || 0);
             
             const x = radius * Math.sin(theta) * Math.cos(phi);
             const y = radius * Math.sin(theta) * Math.sin(phi);
@@ -463,8 +463,8 @@ class QuantumVisualizer {
 }
 
 // Add custom CSS animations
-const style = document.createElement('style');
-style.textContent = `
+const quantumStyle = document.createElement('style');
+quantumStyle.textContent = `
     @keyframes interference-shift {
         0% {
             transform: translateX(0);
@@ -474,7 +474,7 @@ style.textContent = `
         }
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(quantumStyle);
 
 // Initialize quantum visualizer
 document.addEventListener('DOMContentLoaded', () => {

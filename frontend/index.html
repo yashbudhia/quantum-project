@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schrödinger's Cat Quantum Simulator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Schrödinger's Cat</h1>
+            <p class="subtitle">Quantum Superposition Simulator</p>
+            <div class="paper-info">
+                <small>Based on Schrödinger's 1935 paper "Die gegenwärtige Situation in der Quantenmechanik"</small>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="simulation-area">
+                <div class="box-container">
+                    <div id="quantum-box" class="quantum-box">
+                        <div class="box-lid">
+                            <div class="lid-handle"></div>
+                        </div>
+                        <div class="box-body">
+                            <div id="cat-container" class="cat-container">
+                                <div id="cat-alive" class="cat-state cat-alive">
+                                    <div class="cat-emoji">🐱</div>
+                                    <div class="cat-label">ALIVE</div>
+                                </div>
+                                <div id="cat-dead" class="cat-state cat-dead hidden">
+                                    <div class="cat-emoji">😿</div>
+                                    <div class="cat-label">DEAD</div>
+                                </div>
+                                <div id="cat-superposition" class="cat-state cat-superposition hidden">
+                                    <div class="cat-emoji ghost">🐱😿</div>
+                                    <div class="cat-label">SUPERPOSITION</div>
+                                </div>
+                            </div>
+                            <div class="quantum-particles" id="quantum-particles"></div>
+                        </div>
+                    </div>
+                    <div class="box-status" id="box-status">
+                        <span id="status-text">Ready to begin quantum experiment</span>
+                    </div>
+                </div>
+
+                <div class="controls">
+                    <div class="control-group">
+                        <button id="btn-initialize" class="btn btn-primary">
+                            <span class="btn-icon">⚛️</span>
+                            Initialize Cat
+                        </button>
+                        <button id="btn-superposition" class="btn btn-secondary" disabled>
+                            <span class="btn-icon">🌀</span>
+                            Apply Superposition
+                        </button>
+                        <button id="btn-measure" class="btn btn-accent" disabled>
+                            <span class="btn-icon">👁️</span>
+                            Open Box & Measure
+                        </button>
+                    </div>
+                    <div class="control-group">
+                        <button id="btn-multiple" class="btn btn-outline">
+                            <span class="btn-icon">📊</span>
+                            Run 1000 Experiments
+                        </button>
+                        <button id="btn-reset" class="btn btn-outline">
+                            <span class="btn-icon">🔄</span>
+                            Reset
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="visualization-area">
+                <div class="viz-panel">
+                    <h3>Quantum State</h3>
+                    <canvas id="state-chart" width="300" height="200"></canvas>
+                    <div class="state-info" id="state-info">
+                        <p>Initialize the quantum system to begin</p>
+                    </div>
+                </div>
+
+                <div class="viz-panel">
+                    <h3>Quantum Circuit</h3>
+                    <div id="circuit-display" class="circuit-display">
+                        <pre>Waiting for quantum operation...</pre>
+                    </div>
+                </div>
+
+                <div class="viz-panel">
+                    <h3>Probability Distribution</h3>
+                    <canvas id="probability-chart" width="300" height="200"></canvas>
+                    <div class="experiment-stats" id="experiment-stats">
+                        <p>Run experiments to see statistics</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-section">
+                <div class="info-panel">
+                    <h3>Quantum Concepts</h3>
+                    <div id="quantum-concepts" class="concept-content">
+                        <div class="concept-item">
+                            <h4>Superposition</h4>
+                            <p>A quantum system can exist in multiple states simultaneously until measured.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-panel">
+                    <h3>Schrödinger's Original Paper</h3>
+                    <div id="paper-info" class="concept-content">
+                        <div class="paper-quote">
+                            <p>"Man kann auch ganz burleske Fälle konstruieren. Eine Katze wird in eine Stahlkammer gesperrt..."</p>
+                            <cite>— Erwin Schrödinger, 1935</cite>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Quantum Computing Educational Simulator • Based on real quantum circuit simulation using Qiskit</p>
+        </footer>
+    </div>
+
+    <!-- Loading overlay -->
+    <div id="loading" class="loading-overlay hidden">
+        <div class="loading-spinner"></div>
+        <p>Performing quantum operation...</p>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/quantum-visualizer.js"></script>
+    <script src="js/cat-animation.js"></script>
+</body>
+</html>
